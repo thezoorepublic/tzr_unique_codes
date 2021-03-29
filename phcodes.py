@@ -12,10 +12,11 @@ codecsv_heading='code'
 file_type='.csv'
 excludes_filename='excludes.csv'
 allotments = [        
-    Allotment('test_primary-1',10),
-    Allotment('test_primary-2',0),
-    Allotment('test_spare', 0),
-    Allotment('test_testing', 0)
+    Allotment('newwinning',71820),
+    Allotment('newlosing',7980),
+    Allotment('newspare', 7980),
+    Allotment('newtest', 200),
+    Allotment('newcustomersupport', 5000)
 ]
 
 
@@ -125,9 +126,22 @@ def split_to_multiple_files(input_file,file_length=None):
                 smallfile.write('Cover_Code,Coupon_Code\n')
             smallfile.write(line)
 
+def combine_files(export_name,*files):
+    combined_file=open(export_name,'w')
+    for filename in files:
+        readfile=open(filename,'r')
+        for line in readfile:
+            combined_file.write(line)
+        readfile.close()
+    combined_file.close()
+
+
+
 if __name__ == "__main__":
-    pass
+    # pass
+    # os.chdir('944')
+    # combine_files("excludes.csv",'Archive/codes-primary.csv','codes-spare.csv','codes-testandcustomerservice.csv')
     # split_to_multiple_files('code_list.csv')
     # split_to_groups('small_file240000.csv')
-    # generate()
+    generate()
     # split_to_groups()
